@@ -8,11 +8,11 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'dart:math';
 
 void main() async {
-  await localhostServer.start();
+  // await localhostServer.start();
   runApp(const MyApp());
 }
 
-InAppLocalhostServer localhostServer = InAppLocalhostServer();
+// InAppLocalhostServer localhostServer = InAppLocalhostServer();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    localhostServer.close();
+    // localhostServer.close();
     webViewController?.dispose();
     _timer?.cancel();
     super.dispose();
@@ -178,13 +178,14 @@ class _MyHomePageState extends State<MyHomePage> {
           Expanded(
             child: InAppWebView(
               key: webViewKey,
-              initialUrlRequest: URLRequest(
-                  url: WebUri("http://localhost:8080/assets/chart.html")),
+              // initialUrlRequest: URLRequest(
+              //     url: WebUri("http://localhost:8080/assets/chart.html")),
               onConsoleMessage: (controller, consoleMessage) {
                 print('onConsoleMessage = $consoleMessage');
               },
               onWebViewCreated: (controller) async {
                 webViewController = controller;
+                webViewController?.loadFile(assetFilePath: 'assets/chart.html');
                 controller.addJavaScriptHandler(
                     handlerName: 'initChart',
                     callback: (args) {
