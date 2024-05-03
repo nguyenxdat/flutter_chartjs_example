@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:collection';
 import 'dart:convert';
+import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'dart:math';
 
 void main() async {
   // await localhostServer.start();
@@ -176,7 +174,21 @@ class _MyHomePageState extends State<MyHomePage> {
             IconButton(
                 onPressed: () async {
                   webViewController?.evaluateJavascript(source: """
-      bind_chart_flutter('${_listKey[_randomValue(2)]}');
+      bind_chart_flutter('${_listKey[0]}');
+    """);
+                },
+                icon: const Icon(Icons.add)),
+            IconButton(
+                onPressed: () async {
+                  webViewController?.evaluateJavascript(source: """
+      bind_chart_flutter('${_listKey[1]}');
+    """);
+                },
+                icon: const Icon(Icons.add)),
+            IconButton(
+                onPressed: () async {
+                  webViewController?.evaluateJavascript(source: """
+      bind_chart_flutter('${_listKey[2]}');
     """);
                 },
                 icon: const Icon(Icons.add)),
