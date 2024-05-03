@@ -71,6 +71,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Timer? _timer;
 
+  final _listKey = [
+    'eyJob190ZW4iOiJ0aCIsImdpb2lfdGluaCI6MSwibmdheV9zaW5oX2R1b25nX2xpY2giOiIwMi8wNS8yMDIzIiwiZ2lvX3NpbmgiOiIiLCJzaW1fY3UiOiIiLCJuaGFfbWFuZyI6IkNo4buNbiIsInRoYW5oX3Bob19zaW5oIjowLCJ0aGFuaF9waG9fbyI6MCwic2ltX2NhaV92YW4iOiIwOTA4MTg1MjUyIiwia2hfdG9rZW4iOiJsU3M3U2pxSDlsUGV4K2w2aXhKNWpnPT0iLCJzb19sdW90X3hlbV9jb25fbGFpIjo5NDM2LCJjaGFydF9saW5lIjpbeyJsb2FpIjoiSGnhu4duIHThuqFpIiwiY29udHJhaSI6LTUyLCJjb25nYWkiOi03NCwidGllbnRhaSI6LTc2LCJob25uaGFuIjotNDQsInBoYXBsdWF0IjotNzAsImNvbmdkYW5oIjo5MiwiY2hhIjotOTEsIm1lIjo0NDcsInN1Y2tob2UiOi03MiwiYW5oZW0iOi02MH0seyJsb2FpIjoiQ+G6o2kgduG6rW4oMDkwODE4NTI1MikiLCJjb250cmFpIjotMjgsImNvbmdhaSI6LTM0LCJ0aWVudGFpIjotNTgsImhvbm5oYW4iOi01MCwicGhhcGx1YXQiOjEzLCJjb25nZGFuaCI6NTQsImNoYSI6MzEsIm1lIjoxNjcsInN1Y2tob2UiOi00OSwiYW5oZW0iOi00Nn1dfQ==',
+    'eyJob190ZW4iOiJ0aCIsImdpb2lfdGluaCI6MSwibmdheV9zaW5oX2R1b25nX2xpY2giOiIwMi8wNS8yMDIzIiwiZ2lvX3NpbmgiOiIiLCJzaW1fY3UiOiIiLCJuaGFfbWFuZyI6IkNo4buNbiIsInRoYW5oX3Bob19zaW5oIjowLCJ0aGFuaF9waG9fbyI6MCwic2ltX2NhaV92YW4iOiIwOTA4MTg1MjUyIiwia2hfdG9rZW4iOiJsU3M3U2pxSDlsUGV4K2w2aXhKNWpnPT0iLCJzb19sdW90X3hlbV9jb25fbGFpIjo5NDM2LCJjaGFydF9saW5lIjpbeyJsb2FpIjoiSGnhu4duIHThuqFpIiwiY29udHJhaSI6LTUyLCJjb25nYWkiOi03NCwidGllbnRhaSI6LTc2LCJob25uaGFuIjotNDQsInBoYXBsdWF0IjotNzAsImNvbmdkYW5oIjo5MiwiY2hhIjotOTEsIm1lIjo0NDcsInN1Y2tob2UiOi0xMiwiYW5oZW0iOi0xMH0seyJsb2FpIjoiQ+G6o2kgduG6rW4oMDkwODE4NTI1MikiLCJjb250cmFpIjotMTgsImNvbmdhaSI6LTE0LCJ0aWVudGFpIjotMTgsImhvbm5oYW4iOi01MCwicGhhcGx1YXQiOjEzLCJjb25nZGFuaCI6MTQsImNoYSI6MTEsIm1lIjoxNywic3Vja2hvZSI6LTE5LCJhbmhlbSI6LTE2fV19',
+    'eyJob190ZW4iOiJ0aCIsImdpb2lfdGluaCI6MSwibmdheV9zaW5oX2R1b25nX2xpY2giOiIwMi8wNS8yMDIzIiwiZ2lvX3NpbmgiOiIiLCJzaW1fY3UiOiIiLCJuaGFfbWFuZyI6IkNo4buNbiIsInRoYW5oX3Bob19zaW5oIjowLCJ0aGFuaF9waG9fbyI6MCwic2ltX2NhaV92YW4iOiIwOTA4MTg1MjUyIiwia2hfdG9rZW4iOiJsU3M3U2pxSDlsUGV4K2w2aXhKNWpnPT0iLCJzb19sdW90X3hlbV9jb25fbGFpIjo5NDM2LCJjaGFydF9saW5lIjpbeyJsb2FpIjoiSGnhu4duIHThuqFpIiwiY29udHJhaSI6LTUyLCJjb25nYWkiOi03NCwidGllbnRhaSI6LTc2LCJob25uaGFuIjotNDQsInBoYXBsdWF0IjotNDAsImNvbmdkYW5oIjo0MiwiY2hhIjotNDEsIm1lIjo0Nywic3Vja2hvZSI6LTQyLCJhbmhlbSI6LTEwfSx7ImxvYWkiOiJD4bqjaSB24bqtbigwOTA4MTg1MjUyKSIsImNvbnRyYWkiOi0xOCwiY29uZ2FpIjotMzQsInRpZW50YWkiOi0zOCwiaG9ubmhhbiI6LTMwLCJwaGFwbHVhdCI6MTMsImNvbmdkYW5oIjozNCwiY2hhIjozMSwibWUiOjM3LCJzdWNraG9lIjotMzksImFuaGVtIjotMzZ9XX0='
+  ];
+
   @override
   void dispose() {
     // localhostServer.close();
@@ -118,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int _randomValue(int value) {
     final random = Random();
-    return random.nextInt(value) + 10;
+    return random.nextInt(value) + 0;
   }
 
   void _updateData() {
@@ -169,7 +175,9 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: [
             IconButton(
                 onPressed: () async {
-                  _updateData();
+                  webViewController?.evaluateJavascript(source: """
+      bind_chart_flutter('${_listKey[_randomValue(2)]}');
+    """);
                 },
                 icon: const Icon(Icons.add)),
           ],
@@ -185,12 +193,13 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               onWebViewCreated: (controller) async {
                 webViewController = controller;
-                webViewController?.loadFile(assetFilePath: 'assets/chart.html');
-                controller.addJavaScriptHandler(
-                    handlerName: 'initChart',
-                    callback: (args) {
-                      _initData();
-                    });
+                webViewController?.loadFile(
+                    assetFilePath: 'assets/indexv3.html');
+                // controller.addJavaScriptHandler(
+                //     handlerName: 'initChart',
+                //     callback: (args) {
+                //       _initData();
+                //     });
               },
             ),
           ),
